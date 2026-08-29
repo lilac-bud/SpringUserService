@@ -3,7 +3,9 @@ package io.github.lilacbud.userservice.mappers;
 import io.github.lilacbud.userservice.dto.UserDTO;
 import io.github.lilacbud.userservice.model.User;
 import java.util.Optional;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
     public User mapToUserEntity(UserDTO dto, User entity) {
         if (entity != null) {

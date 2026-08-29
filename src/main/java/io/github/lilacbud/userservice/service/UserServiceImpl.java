@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public void deleteUserById(Long id) {
         repository.deleteById(id);
     }
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<UserDTO> findAllUsers() {
         List<UserDTO> resultList = new ArrayList<>();
         repository.findAll().forEach(user -> resultList.add(mapper.mapToUserDTO(user)));

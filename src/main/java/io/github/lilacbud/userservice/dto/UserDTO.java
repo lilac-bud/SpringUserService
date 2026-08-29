@@ -6,10 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserDTO {
-    private long id;
+    private Long id;
     private String name;
     private String email;
-    private int age;
+    private Integer age;
     
     @Override
     public String toString() {

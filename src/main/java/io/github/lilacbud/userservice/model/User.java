@@ -25,7 +25,7 @@ public class User {
     private Long id;
     private String name;
     private String email;
-    private int age;
+    private Integer age;
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     @Setter(AccessLevel.NONE)
