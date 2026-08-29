@@ -2,18 +2,24 @@ package io.github.lilacbud.userservice.mappers;
 
 import io.github.lilacbud.userservice.dto.UserDTO;
 import io.github.lilacbud.userservice.model.User;
+import java.util.Optional;
 
 public class UserMapper {
+    public User mapToUserEntity(UserDTO dto, User entity) {
+        if (entity != null) {
+            Optional.ofNullable(dto.getId()).ifPresent(entity::setId);
+            Optional.ofNullable(dto.getName()).ifPresent(entity::setName);
+            Optional.ofNullable(dto.getEmail()).ifPresent(entity::setEmail);
+            Optional.ofNullable(dto.getAge()).ifPresent(entity::setAge);
+        }
+        return entity;
+    }
+    
     public User mapToUserEntity(UserDTO dto) {
         if (dto == null) {
             return null;
         }
-        User entity = new User();
-        entity.setId(dto.getId());
-        entity.setName(dto.getName());
-        entity.setEmail(dto.getEmail());
-        entity.setAge(dto.getAge());
-        return entity;
+        return mapToUserEntity(dto, new User());
     }
     
     public UserDTO mapToUserDTO(User entity) {
