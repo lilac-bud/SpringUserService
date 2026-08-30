@@ -18,6 +18,7 @@ public class UserDTO {
             message = "User name length must be between 1 and 50 characters")
     private String name;
     @NotNull(groups = OnCreate.class, message = "User email must not be null")
+    @Size(min = 1, groups = {OnCreate.class, OnUpdate.class}, message = "User email must not be empty")
     @Email(groups = {OnCreate.class, OnUpdate.class}, message = "User email must have a legal format")
     private String email;
     @Positive(groups = {OnCreate.class, OnUpdate.class}, message = "User age must be greater than zero")
