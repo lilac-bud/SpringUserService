@@ -28,18 +28,23 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteUserById(Long id) {
         repository.deleteById(id);
+        System.out.println("Deleting was successfully called");
     }
 
     @Override
     @Transactional
     public UserDTO saveUser(UserDTO dto) {
-        return mapper.mapToUserDTO(repository.save(mapper.mapToUserEntity(dto)));
+        UserDTO result = mapper.mapToUserDTO(repository.save(mapper.mapToUserEntity(dto)));
+        System.out.println("Saving was successfully called for " + dto);
+        return result;
     }
 
     @Override
     public UserDTO updateUser(Long id, UserDTO dto) {
         User user = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Failed to find user"));
-        return mapper.mapToUserDTO(repository.save(mapper.mapToUserEntity(dto, user)));
+        UserDTO result = mapper.mapToUserDTO(repository.save(mapper.mapToUserEntity(dto, user)));
+        System.out.println("Updating was successfully called for " + dto);
+        return result;
     }
 
     @Override
@@ -54,5 +59,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteAllUsers() {
         repository.deleteAll();
+        System.out.println("Deleting was successfully called");
     } 
 }
