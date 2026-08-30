@@ -83,6 +83,15 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.email").value("alex@alex.com"))
                 .andExpect(jsonPath("$.age").value(18));
     }
+    
+    @Test
+    public void givenThatUserIsInvalid_whenCreatingUser_thenReturnStatusBadRequest() throws Exception {
+        mvc.perform(post("/users")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
 
     @Test
     public void givenThatUserExistsAndUpdateIsValid_whenUpdatingUser_thenReturnUpdatedUser() throws Exception {
@@ -110,6 +119,15 @@ public class UserControllerTest {
                 .content("{\"email\": \"alex@alex.com\"}")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
+    }
+    
+    @Test
+    public void givenThatUpdateIsInvalid_whenUpdatingUser_thenReturnStatusBadRequest() throws Exception {
+        mvc.perform(patch("/users/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"age\": -5}")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
     }
             
     @Test
