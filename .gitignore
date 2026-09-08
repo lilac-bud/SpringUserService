@@ -90,3 +90,4 @@ nb-configuration.xml
 *.log
 /nbproject/
 /src/main/resources/hibernate.properties
+/config/application.properties
